@@ -12,7 +12,7 @@ import { MotionSection } from './components/MotionSection';
 
 export default function App() {
   const [totalRaised, setTotalRaised] = useState(623090);
-  const goal = 12000000;
+  const goal = 19000000;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-50 via-white to-blue-50">

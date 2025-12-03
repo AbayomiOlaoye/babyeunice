@@ -1,3 +1,5 @@
+'use client';
+
 import { Heart, AlertCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -33,11 +35,52 @@ export function StorySection() {
   const [slide, setSlide] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalIndex, setModalIndex] = useState(0);
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  
+  // main image animation variants
+  const mainVariants = {
+    enter: (direction: number) => ({ opacity: 0, x: 30 * direction }),
+    center: { opacity: 1, x: 0, transition: { duration: 0.45, ease: 'easeOut' } },
+    exit: (direction: number) => ({ opacity: 0, x: -30 * direction, transition: { duration: 0.35 } }),
   };
+  // track direction for subtle slide motion
+  const [direction, setDirection] = useState(1);
+  const prev = () => {
+    setDirection(-1);
+    setSlide((s) => (s - 1 + carouselItems.length) % carouselItems.length);
+  };
+  const next = () => {
+    setDirection(1);
+    setSlide((s) => (s + 1) % carouselItems.length);
+  };
+  const openModal = (index: number) => {
+    setModalIndex(index);
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalIndex(0);
+    setModalOpen(false);
+  };
+  // ensure modal navigation safe
+  const modalPrev = () => setModalIndex((i) => (i - 1 + carouselItems.length) % carouselItems.length);
+  const modalNext = () => setModalIndex((i) => (i + 1) % carouselItems.length);
+
+  useEffect(() => {
+    if (!modalOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') modalPrev();
+      if (e.key === 'ArrowRight') modalNext();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [modalOpen]);
+
+  const sendWhatsApp = () => {
+    const phoneNumber = '2348161321148';
+    const message = encodeURIComponent('Hello, I would like to verify the details regarding baby Eunice Bamidele\'s medical condition and fundraising efforts.');
+    const url = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(url, '_blank');
+  }
 
   const carouselItems = [
     {
@@ -87,39 +130,20 @@ export function StorySection() {
     },
   ];
 
-  const prev = () => setSlide((s) => (s - 1 + carouselItems.length) % carouselItems.length);
-  const next = () => setSlide((s) => (s + 1) % carouselItems.length);
-
-  const openModal = (index: number) => {
-    setModalIndex(index);
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalIndex(0);
-    setModalOpen(false);
-  };
-
-  const modalPrev = () => setModalIndex((i) => (i - 1 + carouselItems.length) % carouselItems.length);
-  const modalNext = () => setModalIndex((i) => (i + 1) % carouselItems.length);
-
+  // Preload images to avoid load/pop-in during transitions
   useEffect(() => {
-    if (!modalOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeModal();
-      if (e.key === 'ArrowLeft') modalPrev();
-      if (e.key === 'ArrowRight') modalNext();
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [modalOpen]);
-
-  const sendWhatsApp = () => {
-    const phoneNumber = '2348161321148';
-    const message = encodeURIComponent('Hello, I would like to verify the details regarding baby Eunice Bamidele\'s medical condition and fundraising efforts.');
-    const url = `https://wa.me/${phoneNumber}?text=${message}`;
-    window.open(url, '_blank');
-  }
+    carouselItems.forEach((it) => {
+      try {
+        const img = new Image();
+        img.src = it.src as string;
+      } catch (e) {
+        // ignore
+      }
+    });
+  }, [carouselItems]);
+  
+  // smoother transition config
+  const transitionConfig = { duration: 0.48, ease: [0.22, 0.9, 0.3, 1] };
 
   return (
     <div id="story" className="container mx-auto px-4 py-16">
@@ -130,14 +154,52 @@ export function StorySection() {
         </div>
         
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-          <div className="grid md:grid-cols-2 gap-0">
-            <div className="relative h-full md:h-auto cursor-pointer" onClick={() => openModal(0)} aria-hidden>
-              <ImageWithFallback 
-                src={eunice}
-                alt="Medical care for baby"
-                className="max-w-full w-full h-full object-contain bg-gray-50 p-4"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+            <div className="relative h-[480px] md:h-[620px]">
+              <div
+                className="relative w-full h-[480px] md:h-[620px] bg-gray-50 rounded-lg overflow-hidden cursor-pointer"
+                aria-hidden
+              >
+                <div className="absolute inset-0 flex items-center justify-between px-2 z-10 pointer-events-auto">
+                  <button
+                    onClick={(e) => { e.stopPropagation(); prev(); }}
+                    aria-label="Previous image"
+                    className="bg-white/90 hover:bg-white p-2 rounded-full shadow-md"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); next(); }}
+                    aria-label="Next image"
+                    className="bg-white/90 hover:bg-white p-2 rounded-full shadow-md"
+                  >
+                    ›
+                  </button>
+                </div>
+
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <AnimatePresence initial={false} custom={direction}>
+                    <motion.img
+                      animate={{ x: 0, opacity: 1, transition: transitionConfig }}
+                      exit={{ x: -100 * direction, opacity: 0, transition: transitionConfig }}
+                      key={carouselItems[slide]?.src ?? slide}
+                      src={carouselItems[slide]?.src}
+                      alt={carouselItems[slide]?.alt ?? `slide-${slide}`}
+                      custom={direction}
+                      initial={{ x: 100 * direction, opacity: 0 }}
+                      style={{
+                        position: 'absolute',
+                        left: 0,
+                        right: 0,
+                        margin: 'auto',
+                        maxHeight: '620px',
+                        willChange: 'transform, opacity',
+                      }}
+                      className="object-contain rounded-lg"
+                    />
+                  </AnimatePresence>
+                </div>
+              </div>
             </div>
             
             <div className="p-8 md:p-10">
@@ -181,24 +243,20 @@ export function StorySection() {
         {/* Carousel: hospital / dedication / echo snapshots */}
         <div className="mt-8">
           <div className="relative bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {carouselItems.map((media, index) => {
-                return (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    className="relative rounded-lg w-full overflow-hidden bg-gray-100 cursor-pointer group"
-                    style={{ aspectRatio: "4 / 3" }}
-                    onClick={() => openModal(index)}
-                  >
-                    <img
-                      src={media.src}
-                      alt={media.alt}
-                      className="object-cover transition-transform duration-300"
-                    />
-                  </motion.div>
-                );
-              })}
+            <div className="flex gap-2 p-3 bg-gray-50 overflow-x-auto">
+              {carouselItems.map((item, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    // set sliding direction based on index to keep motion consistent
+                    setDirection(i > slide ? 1 : -1);
+                    setSlide(i);
+                  }}
+                  className={`rounded-md overflow-hidden border ${i === slide ? 'ring-2 ring-rose-500' : 'border-transparent'}`}
+                >
+                  <ImageWithFallback src={item.src} alt={item.alt} className="w-12 h-12 object-cover bg-white p-1" />
+                </button>
+              ))}
             </div>
             <div className="p-4 md:p-6 flex items-center justify-between">
               <p className="text-sm text-gray-700 max-w-3xl">{carouselItems[slide].caption}</p>
@@ -211,20 +269,11 @@ export function StorySection() {
                 </button>
               </div>
             </div>
-
-            {/* thumbnails to improve organisation */}
-            <div className="flex gap-2 p-3 justify-center bg-gray-50 overflow-x-auto">
-              {carouselItems.map((item, i) => (
-                <button key={i} onClick={() => setSlide(i)} className={`rounded-md overflow-hidden border ${i === slide ? 'ring-2 ring-rose-500' : 'border-transparent'}`}>
-                  <ImageWithFallback src={item.src} alt={item.alt} className="w-12 h-12 object-cover bg-white p-1" />
-                </button>
-              ))}
-            </div>
           </div>
         </div>
 
         {/* Modal / Lightbox */}
-        <AnimatePresence>
+        {/* <AnimatePresence>
         {modalOpen && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -251,8 +300,8 @@ export function StorySection() {
 
               <div className="relative w-full max-h-screen">
                 <img
-                  src={modalIndex ? carouselItems[modalIndex].src : ''}
-                  alt="Eunice's sweet memories"
+                  src={carouselItems[modalIndex]?.src ?? ''}
+                  alt={carouselItems[modalIndex]?.alt ?? "Eunice's photo"}
                   width={500}
                   height={800}
                   className="w-full h-auto max-h-screen object-contain rounded-lg"
@@ -261,7 +310,7 @@ export function StorySection() {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
         
         <div className="mt-12 grid md:grid-cols-3 gap-6">
           <div className="bg-gradient-to-br from-rose-50 to-pink-50 p-6 rounded-xl border border-rose-100">
