@@ -223,7 +223,7 @@ export function StorySection() {
                 </p>
                 
                 <p>
-                  The good news is that this condition is treatable with surgery. The heartbreaking news is that Eunice's family cannot afford the ₦12 million
+                  The good news is that this condition is treatable with surgery. The heartbreaking news is that Eunice's family cannot afford the ₦19 million
                   needed for the cardiac catheterization and operation. Her father, Felix Bamidele, is the account holder receiving donations for Eunice — this is
                   verifiable through hospital documentation and the family’s stated details or via <span onClick={sendWhatsApp} title="Click to send a WhatsApp message" className="text-rose-600 font-black cursor-pointer underline">WhatsApp</span>.
                 </p>
