@@ -105,12 +105,12 @@ export function StorySection() {
     },
     {
       src: withDad,
-      caption: 'Eunice with her father, Felix Bamidele — a moment of bonding and strength',
+      caption: 'Eunice with her father, Felix Bamidele — a moment of bonding and strength filled with hope',
       alt: 'Eunice with dad'
     },
     {
       src: mumsPride,
-      caption: 'Eunice being held by her mother — a symbol of hope and resilience',
+      caption: 'Eunice being held by her gracefully caring mother — a testament to maternal love and resilience',
       alt: 'Eunice with mum'
     },
     {
@@ -125,7 +125,7 @@ export function StorySection() {
     },
     {
       src: gift,
-      caption: 'Eunice receiving a gift — small joys that brighten her days',
+      caption: 'A heartwarming moment with the father, Felix Bamidele, at her christening.',
       alt: 'Eunice with gift'
     },
   ];
@@ -157,21 +157,21 @@ export function StorySection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
             <div className="relative h-[480px] md:h-[620px]">
               <div
-                className="relative w-full h-[480px] md:h-[620px] bg-gray-50 rounded-lg overflow-hidden cursor-pointer"
+                className="relative w-full h-full bg-gray-50 p-4 rounded-lg overflow-hidden cursor-pointer"
                 aria-hidden
               >
                 <div className="absolute inset-0 flex items-center justify-between px-2 z-10 pointer-events-auto">
                   <button
                     onClick={(e) => { e.stopPropagation(); prev(); }}
                     aria-label="Previous image"
-                    className="bg-white/90 hover:bg-white p-2 rounded-full shadow-md"
+                    className="bg-rose-100 w-10 h-10 hover:bg-white p-2 text-4xl rounded-full shadow-md"
                   >
                     ‹
                   </button>
                   <button
                     onClick={(e) => { e.stopPropagation(); next(); }}
                     aria-label="Next image"
-                    className="bg-white/90 hover:bg-white p-2 rounded-full shadow-md"
+                    className="bg-rose-100 w-10 h-10 hover:bg-white p-2 text-4xl rounded-full shadow-md"
                   >
                     ›
                   </button>
@@ -192,10 +192,10 @@ export function StorySection() {
                         left: 0,
                         right: 0,
                         margin: 'auto',
-                        maxHeight: '620px',
+                        maxHeight: '100%',
                         willChange: 'transform, opacity',
                       }}
-                      className="object-contain rounded-lg"
+                      className="object-cover w-full rounded-lg"
                     />
                   </AnimatePresence>
                 </div>
