@@ -50,7 +50,7 @@ export function ProgressSection({ totalRaised, goal }: ProgressSectionProps) {
         </div>
         
         <div className="space-y-3">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between text-xs lg:text-lg items-center">
             <span className="text-gray-700">{percentage.toFixed(1)}% of goal reached</span>
             <span className="text-rose-600">{formatCurrency(remaining)} to go</span>
           </div>

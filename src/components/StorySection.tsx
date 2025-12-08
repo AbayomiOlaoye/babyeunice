@@ -155,7 +155,7 @@ export function StorySection() {
         
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-            <div className="relative h-[480px] md:h-[620px]">
+            <div className="relative h-[480px] md:h-full">
               <div
                 className="relative w-full h-full bg-gray-50 p-4 rounded-lg overflow-hidden cursor-pointer"
                 aria-hidden
@@ -164,14 +164,14 @@ export function StorySection() {
                   <button
                     onClick={(e) => { e.stopPropagation(); prev(); }}
                     aria-label="Previous image"
-                    className="bg-rose-100 w-10 h-10 hover:bg-white p-2 text-4xl rounded-full shadow-md"
+                    className="bg-rose-100 w-10 h-10 hover:bg-white text-4xl rounded-full shadow-md"
                   >
                     ‹
                   </button>
                   <button
                     onClick={(e) => { e.stopPropagation(); next(); }}
                     aria-label="Next image"
-                    className="bg-rose-100 w-10 h-10 hover:bg-white p-2 text-4xl rounded-full shadow-md"
+                    className="bg-rose-100 w-10 h-10 hover:bg-white text-4xl rounded-full shadow-md"
                   >
                     ›
                   </button>
@@ -196,7 +196,7 @@ export function StorySection() {
                         maxHeight: '100%',
                         willChange: 'transform, opacity',
                       }}
-                      className="object-cover w-full rounded-lg"
+                      className="object-cover w-full h-full rounded-lg"
                     />
                   </AnimatePresence>
                 </div>
@@ -260,12 +260,20 @@ export function StorySection() {
               ))}
             </div>
             <div className="p-4 md:p-6 flex items-center justify-between">
-              <p className="text-sm text-gray-700 max-w-3xl">{carouselItems[slide].caption}</p>
+              <motion.p
+                initial={{ opacity: 0, x: direction * 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction * -50 }}
+                transition={{ duration: 0.3 }}
+                className="text-sm text-gray-700 max-w-3xl"
+              >
+                {carouselItems[slide].caption}
+              </motion.p>
               <div className="flex items-center gap-2">
-                <button onClick={prev} aria-label="Previous" className="p-3 rounded-full bg-gray-100 hover:bg-rose-300">
+                <button onClick={prev} aria-label="Previous" className="rounded-full w-8 h-8 bg-gray-100 hover:bg-rose-300">
                   ‹
                 </button>
-                <button onClick={next} aria-label="Next" className="p-3 rounded-full bg-gray-100 hover:bg-rose-300">
+                <button onClick={next} aria-label="Next" className="rounded-full w-8 h-8 bg-gray-100 hover:bg-rose-300">
                   ›
                 </button>
               </div>

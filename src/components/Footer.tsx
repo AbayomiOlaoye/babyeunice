@@ -57,7 +57,7 @@ export function Footer() {
                   donate@savebabyeunice.org
                 </a>
                 <a 
-                  href="tel:+2348012345678" 
+                  href="tel:+2348161321148" 
                   className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
                 >
                   <Phone className="w-5 h-5" />
