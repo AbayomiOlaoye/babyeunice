@@ -201,8 +201,8 @@ export function AccountDetails() {
                 <h4 className="text-gray-900 mb-2">Important Note for Bank Transfer Donors</h4>
                 <p className="text-gray-700 leading-relaxed">
                   After making a bank transfer, please send us an email at{' '}
-                  <a href="mailto:donations@saveeunice.org" className="text-blue-600 hover:underline">
-                    donations@saveeunice.org
+                  <a href="mailto:donate@savebabyeunice.org" className="text-blue-600 hover:underline">
+                    donate@savebabyeunice.org
                   </a>{' '}
                   with your transfer receipt and details so we can acknowledge your donation and update the progress tracker. 
                   Your generosity helps save Eunice's life!

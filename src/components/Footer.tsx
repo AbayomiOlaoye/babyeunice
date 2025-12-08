@@ -50,18 +50,18 @@ export function Footer() {
               <h4 className="text-white mb-4">Contact Us</h4>
               <div className="space-y-3">
                 <a 
-                  href="mailto:donations@saveeunice.org" 
+                  href="mailto:donate@savebabyeunice.org" 
                   className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
                 >
                   <Mail className="w-5 h-5" />
-                  donations@saveeunice.org
+                  donate@savebabyeunice.org
                 </a>
                 <a 
                   href="tel:+2348012345678" 
                   className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
                 >
                   <Phone className="w-5 h-5" />
-                  +234 801 234 5678
+                  +234 816 132 1148
                 </a>
               </div>
             </div>

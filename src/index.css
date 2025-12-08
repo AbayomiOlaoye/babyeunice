@@ -2367,9 +2367,10 @@ html {
     opacity: .5;
   }
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+.hidden {
+  display: none;
+}
 
 /* small convenience defaults */
 html, body, #root {

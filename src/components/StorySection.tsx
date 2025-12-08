@@ -90,7 +90,7 @@ export function StorySection() {
     },
     {
       src: withMumAndDad,
-      caption: 'Eunice being dedicated at church — a family moment of hope and prayer',
+      caption: 'Eunice being dedicated in the church — a family moment of hope and prayer',
       alt: 'Eunice at dedication'
     },
     {
@@ -192,6 +192,7 @@ export function StorySection() {
                         left: 0,
                         right: 0,
                         margin: 'auto',
+                        minHeight: '500px',
                         maxHeight: '100%',
                         willChange: 'transform, opacity',
                       }}
@@ -202,7 +203,7 @@ export function StorySection() {
               </div>
             </div>
             
-            <div className="p-8 md:p-10">
+            <div className="p-8 md:p-14">
               <div className="inline-flex items-center gap-2 bg-rose-50 text-rose-700 px-4 py-2 rounded-full mb-6">
                 <AlertCircle className="w-4 h-4" />
                 <span>Critical Condition</span>
