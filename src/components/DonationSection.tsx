@@ -102,7 +102,7 @@ export function DonationSection({ onDonationSuccess }: DonationSectionProps) {
                   <button
                     key={preset}
                     onClick={() => setAmount(preset.toString())}
-                    className={`py-3 px-4 rounded-lg border-2 transition-all ${
+                    className={`py-3 px-3 text-sm lg:text-base rounded-lg border-2 transition-all ${
                       amount === preset.toString()
                         ? 'border-rose-600 bg-rose-50 text-rose-700'
                         : 'border-gray-200 hover:border-rose-300 text-gray-700'

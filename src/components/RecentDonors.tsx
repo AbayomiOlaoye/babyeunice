@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 export function RecentDonors() {
   const initialDonors = [
+    { name: 'Ruth Kevwe02', amount: 1000, message: '' },
     { name: 'Oluwatoyin O.', amount: 100000, message: 'Praying for our little Eunice, big uncle needs you to be strong!' },
     { name: 'Moses Ola', amount: 120000, message: 'May God heal her completely' },
     { name: 'Dr. Olusesi M.', amount: 150000, message: 'Every child deserves a fighting chance. Keep fighting, princess!' },
