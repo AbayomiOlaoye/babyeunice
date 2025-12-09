@@ -11,7 +11,7 @@ export function ProgressSection({ totalRaised, goal }: ProgressSectionProps) {
   const remaining = goal - totalRaised;
   const donorCount = 12;
 
-  const deadlineDate = new Date('2025-03-15T23:59:59');
+  const deadlineDate = new Date('2026-02-15T23:59:59');
   const [daysLeft, setDaysLeft] = useState(() => {
     const now = new Date().getTime();
     const deadline = deadlineDate.getTime();
@@ -20,14 +20,13 @@ export function ProgressSection({ totalRaised, goal }: ProgressSectionProps) {
   });
 
   useEffect(() => {
-    // Update countdown daily (every 24 hours or check every hour for accuracy)
     const interval = setInterval(() => {
       const now = new Date().getTime();
       const deadline = deadlineDate.getTime();
       const diff = deadline - now;
       const days = Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
       setDaysLeft(days);
-    }, 1000 * 60 * 60); // update every hour (or use 1000 * 60 * 60 * 24 for daily)
+    }, 1000 * 60 * 60);
 
     return () => clearInterval(interval);
   }, []);
