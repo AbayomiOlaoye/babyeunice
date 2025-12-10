@@ -9,7 +9,7 @@ interface ProgressSectionProps {
 export function ProgressSection({ totalRaised, goal }: ProgressSectionProps) {
   const percentage = Math.min((totalRaised / goal) * 100, 100);
   const remaining = goal - totalRaised;
-  const donorCount = 18;
+  const donorCount = 20;
 
   const deadlineDate = new Date('2026-02-15T23:59:59');
   const [daysLeft, setDaysLeft] = useState(() => {
