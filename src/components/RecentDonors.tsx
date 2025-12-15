@@ -3,6 +3,15 @@ import { useEffect, useState } from 'react';
 
 export function RecentDonors() {
   const initialDonors = [
+    { name: 'Miss M.', amount: 100695, message: '' },
+    { name: 'Annonymous', amount: 60000, message: '' },
+    { name: 'Annonymous', amount: 20000, message: '' },
+    { name: 'Fatimo', amount: 2000, message: '' },
+    { name: 'Annonymous (church)', amount: 50000, message: '' },
+    { name: 'Fatimoh Adekemi', amount: 5000, message: '' },
+    { name: 'Abiola Oladejo', amount: 3000, message: '' },
+    { name: 'YAKNDARA', amount: 1000, message: '' },
+    { name: 'Annonymous (family)', amount: 15000, message: '' },
     { name: 'Annonymous', amount: 15000, message: '' },
     { name: 'Olasoji O..', amount: 3000, message: '' },
     { name: 'Halimah A.', amount: 2000, message: '' },
@@ -32,8 +41,11 @@ export function RecentDonors() {
   const initialTop = [
     { name: 'Dr. Olusesi M.', amount: 150000 },
     { name: 'Moses Ola', amount: 120000 },
+    { name: 'Miss M.', amount: 100695, message: '' },
     { name: 'Oluwatoyin O.', amount: 100000 },
     { name: 'Blessing Bamidele', amount: 75000 },
+    { name: 'Annonymous', amount: 60000, message: '' },
+    { name: 'Annonymous (church)', amount: 50000, message: '' },
     { name: 'Anonymous A.', amount: 50000 },
   ];
 
