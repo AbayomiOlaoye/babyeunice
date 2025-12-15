@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 
 export function RecentDonors() {
   const initialDonors = [
-    { name: 'Miss M.', amount: 100695, message: '' },
+    { name: 'Festus Chimdidu', amount: 15000, message: '' },
+    { name: 'Olajumoke Ayeni', amount: 100695, message: 'I wish her a speedy healing 🙏 and May God give the family strength and grace in this time.' },
     { name: 'Annonymous', amount: 60000, message: '' },
     { name: 'Annonymous', amount: 20000, message: '' },
     { name: 'Fatimo', amount: 2000, message: '' },
@@ -41,11 +42,11 @@ export function RecentDonors() {
   const initialTop = [
     { name: 'Dr. Olusesi M.', amount: 150000 },
     { name: 'Moses Ola', amount: 120000 },
-    { name: 'Miss M.', amount: 100695, message: '' },
+    { name: 'Olajumoke Ayeni', amount: 100695 },
     { name: 'Oluwatoyin O.', amount: 100000 },
     { name: 'Blessing Bamidele', amount: 75000 },
-    { name: 'Annonymous', amount: 60000, message: '' },
-    { name: 'Annonymous (church)', amount: 50000, message: '' },
+    { name: 'Annonymous', amount: 60000 },
+    { name: 'Annonymous (church)', amount: 50000 },
     { name: 'Anonymous A.', amount: 50000 },
   ];
 
