@@ -11,7 +11,7 @@ import { Footer } from './components/Footer';
 import { MotionSection } from './components/MotionSection';
 
 export default function App() {
-  const [totalRaised, setTotalRaised] = useState(950185);
+  const [totalRaised, setTotalRaised] = useState(960185);
   const goal = 19000000;
 
   return (
