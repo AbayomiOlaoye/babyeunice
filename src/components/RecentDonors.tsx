@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 
 export function RecentDonors() {
   const initialDonors = [
+    { name: 'Olaitan Joshua', amount: 1000, message: '' },
+    { name: 'Oluwabusayo', amount: 3000, message: '' },
+    { name: 'Sis. Maya Tita', amount: 147000, message: '' },
     { name: 'Annonymous "Endowed"', amount: 20000, message: '' },
     { name: 'Janet Oluwatoyosi', amount: 5000, message: '' },
     { name: 'Adetunji Matthew', amount: 5000, message: '' },
@@ -47,6 +50,7 @@ export function RecentDonors() {
 
   const initialTop = [
     { name: 'Dr. Olusesi M.', amount: 150000 },
+    { name: 'Sis. Maya Tita', amount: 147000 },
     { name: 'Moses Ola', amount: 120000 },
     { name: 'Olajumoke Ayeni', amount: 100695 },
     { name: 'Oluwatoyin O.', amount: 100000 },

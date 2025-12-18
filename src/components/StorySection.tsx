@@ -4,7 +4,7 @@ import { Heart, AlertCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import eunice from '../assets/bamidele_eunice.webp';
+import eunice from '../assets/duchess-invoice-eunice.jpg';
 import withDad from '../assets/with-dad.jpeg';
 import echoReportA from '../assets/echo-report-a.png';
 import echoReportB from '../assets/echo-report-b.png';
@@ -87,6 +87,11 @@ export function StorySection() {
       src: hospital,
       caption: 'Eunice receiving care at Obafemi Awolowo University Teaching Hospitals — Dept. of Pediatrics',
       alt: 'Eunice at the hospital receiving care'
+    },
+    {
+      src: eunice,
+      caption: 'Invoice from Duchess Specialist Hospital — outlining the required cardiac procedure and associated costs',
+      alt: 'Eunice invoice'
     },
     {
       src: withMumAndDad,
